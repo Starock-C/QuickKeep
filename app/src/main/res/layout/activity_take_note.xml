@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TakeNoteActivity">
+
+    <EditText
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@null"
+        android:id="@+id/edittext_takenote_title"
+        android:hint="给笔记起个标题吧 : )"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_margin="15dp"
+        android:background="@color/colorBlack"
+        android:layout_width="200dp"
+        android:layout_height="10px"/>
+
+    <EditText
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@null"
+        android:gravity="start"
+        android:hint="有什么想写的都记下来吧(ง •_•)ง"
+        android:id="@+id/edittext_takenote_"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+</LinearLayout>

@@ -24,11 +24,11 @@
 
 
         <android.support.v7.widget.RecyclerView
+            android:layout_margin="5dp"
             android:paddingTop="60dp"
-            android:paddingStart="10dp"
             android:id="@+id/recyclerview_main_notes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 

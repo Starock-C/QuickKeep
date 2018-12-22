@@ -39,7 +39,7 @@ public class NoteTypeAdapter extends RecyclerView.Adapter<NoteTypeAdapter.ViewHo
     public void onBindViewHolder(@NonNull NoteTypeAdapter.ViewHolder viewHolder, int i) {
         NoteType noteType = noteTypeList.get(i);
         viewHolder.typeName.setText(noteType.getName());
-        viewHolder.typeCount.setText(noteType.getCount());
+        viewHolder.typeCount.setText(Integer.toString(noteType.getCount())+"条");
     }
 
     @Override

@@ -15,18 +15,21 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/recyclerview_drawer_type"-->
-        <!--android:layout_gravity="start"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity ="start"
+    <android.support.v7.widget.RecyclerView
+        android:padding="10dp"
+        android:id="@+id/recyclerview_drawer_type"
+        android:layout_gravity="start"
         android:gravity="end"
-        android:text="this is menu"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
         android:background="@color/colorWhite"/>
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity ="start"-->
+        <!--android:gravity="end"-->
+        <!--android:text="this is menu"-->
+        <!--android:background="@color/colorWhite"/>-->
 
 </android.support.v4.widget.DrawerLayout>
