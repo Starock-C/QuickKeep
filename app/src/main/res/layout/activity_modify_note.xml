@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TakeNoteActivity">
+    tools:context=".ModifyNoteActivity">
 
     <EditText
         android:textSize="25dp"
@@ -13,7 +13,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:background="@null"
-        android:id="@+id/edittext_takenote_title"
+        android:id="@+id/edittext_modifynote_title"
         android:hint="如果你愿意。。。\n就起个标题吧 ヾ(=･ω･=)o"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -25,7 +25,7 @@
         android:layout_height="10px"/>
 
     <EditText
-        android:id="@+id/edittext_takenote_content"
+        android:id="@+id/edittext_modifynote_content"
         android:layout_width="match_parent"
         android:layout_height="372dp"
         android:layout_marginStart="15dp"
@@ -38,7 +38,7 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:id="@+id/float_addNote_add"
+        android:id="@+id/float_modifyNote_add"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="160dp" />

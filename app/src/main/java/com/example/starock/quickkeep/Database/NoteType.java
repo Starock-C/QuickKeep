@@ -1,6 +1,8 @@
 package com.example.starock.quickkeep.Database;
 
-public class NoteType {
+import org.litepal.crud.LitePalSupport;
+
+public class NoteType extends LitePalSupport {
     private int id;
     private String name;
     private int count;

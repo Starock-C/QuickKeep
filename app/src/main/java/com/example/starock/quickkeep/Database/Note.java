@@ -1,13 +1,17 @@
 package com.example.starock.quickkeep.Database;
 
 
-public class Note {
+import org.litepal.crud.LitePalSupport;
+
+import java.util.Date;
+
+public class Note extends LitePalSupport {
     private int id;                 //笔记ID
     private String title;           //笔记标题
     private String content;         //笔记内容
     private String type;            //笔记分类
     private String source;          //笔记来源
-    private String datetime;        //记录时间
+    private Date datetime;        //记录时间
 
     public int getId() {
         return id;
@@ -49,11 +53,11 @@ public class Note {
         this.source = source;
     }
 
-    public String getDatetime() {
+    public Date getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(String datetime) {
+    public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
 }

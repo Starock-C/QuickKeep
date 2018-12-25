@@ -12,6 +12,9 @@ import com.example.starock.quickkeep.Database.Note;
 import com.example.starock.quickkeep.Database.NoteType;
 import com.example.starock.quickkeep.Drawer.NoteTypeAdapter;
 
+import org.litepal.LitePal;
+import org.litepal.LitePalApplication;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initTypes();
-        initNotes();
+//        initTypes();
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_drawer_type);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());
@@ -40,27 +43,17 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main_note,mainFragment).commit();
 
     }
-    public void initNotes(){
-        noteList.clear();
-        Note note = new Note();
-        note.setTitle("1");
-        note.setContent("111");
-        noteList.add(note);
-        Note note1 = new Note();
-        note1.setTitle("2");
-        note1.setContent("222");
-        noteList.add(note1);
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initTypes();
+        noteTypeAdapter.notifyDataSetChanged();
     }
+
     public void initTypes(){
         noteTypeList.clear();
-        NoteType noteType = new NoteType();
-        noteType.setName("未分类");
-        noteType.setCount(0);
-        noteTypeList.add(noteType);
-        NoteType noteType1 = new NoteType();
-        noteType1.setName("全部");
-        noteType1.setCount(0);
-        noteTypeList.add(noteType1);
+        noteTypeList.addAll(LitePal.findAll(NoteType.class));
     }
 
     private void setDrawerSlidingDistance(){

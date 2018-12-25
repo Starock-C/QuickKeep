@@ -1,10 +1,12 @@
 package com.example.starock.quickkeep;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.starock.quickkeep.Database.Note;
@@ -15,6 +17,26 @@ import java.util.List;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private List<Note> noteList;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    public interface OnItemClickListener {
+        void onClick(int position);
+    }
+
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
+    public interface OnItemLongClickListener {
+        void onClick(int position);
+    }
+
+    private OnItemLongClickListener longClickListener;
+
+    public void setOnItemLongClickListener(OnItemLongClickListener longClickListener){
+        this.longClickListener = longClickListener;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView noteTitle;
@@ -39,15 +61,33 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull NoteAdapter.ViewHolder viewHolder, final int i) {
         Note note = noteList.get(i);
         viewHolder.noteTitle.setText(note.getTitle());
         viewHolder.noteTime.setText(sdf.format(note.getDatetime()));
         viewHolder.noteContent.setText(note.getContent());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                listener.onClick(i);
+            }
+        });
+
+        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (longClickListener != null){
+                    longClickListener.onClick(i);
+                }
+                return true;
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return noteList.size();
     }
+
 }
