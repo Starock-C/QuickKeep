@@ -22,8 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static List<NoteType> noteTypeList = new ArrayList<>();
     private static NoteTypeAdapter noteTypeAdapter = new NoteTypeAdapter(noteTypeList);
-    private static List<Note> noteList = new ArrayList<>();
-    private static NoteAdapter noteAdapter = new NoteAdapter(noteList);
+
     private DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +51,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initTypes(){
+        if (LitePal.findAll(NoteType.class).isEmpty()){
+            NoteType noteType = new NoteType();
+            noteType.setName("未分类");
+            noteType.setCount(0);
+            noteType.save();
+            NoteType noteType1 =new NoteType();
+            noteType1.setName("工作");
+            noteType1.setCount(0);
+            noteType1.save();
+            NoteType noteType2 = new NoteType();
+            noteType2.setName("生活");
+            noteType2.setCount(0);
+            noteType2.save();
+        }
         noteTypeList.clear();
         noteTypeList.addAll(LitePal.findAll(NoteType.class));
     }

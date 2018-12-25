@@ -58,8 +58,6 @@ public class ModifyNoteActivity extends AppCompatActivity {
     class AsyncTaskThread extends AsyncTask<String, Integer, Boolean>{
         @Override
         protected Boolean doInBackground(String... strings) {
-//            title.setText(note.getTitle());
-//            content.setText(note.getContent());
             if (note.getTitle().equals("无标题"))
                 title.setText("");
             else title.setText(note.getTitle());

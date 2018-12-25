@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.starock.quickkeep.Database.Note;
+import com.example.starock.quickkeep.User.UserMainActivity;
 
 import org.litepal.LitePal;
 
@@ -42,9 +43,16 @@ public class MainFragment extends Fragment {
         recyclerView.setAdapter(noteAdapter);
 
         FloatingActionButton takeNote = view.findViewById(R.id.float_main_note);
+
         //悬浮按钮-进入用户界面
         FloatingActionButton  userInterface = view.findViewById(R.id.float_main_user);
-
+        userInterface.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(),UserMainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         takeNote.setOnClickListener(new View.OnClickListener() {
             @Override

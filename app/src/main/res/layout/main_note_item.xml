@@ -10,7 +10,7 @@
     android:background="@drawable/linearlayout_round">
 
     <TextView
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textColor="@color/colorBlack"
         android:id="@+id/textview_main_title"
         android:layout_width="match_parent"
