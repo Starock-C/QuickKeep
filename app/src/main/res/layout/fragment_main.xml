@@ -9,62 +9,96 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/button_main_search"
-            android:layout_alignParentTop="true"
-            android:layout_alignTop="@id/recyclerview_main_notes"
-            android:layout_margin="10dp"
-            android:text="搜索"
-            android:textSize="15sp"
-            android:background="@drawable/btn_round"
-            android:elevation="3dp"
-            android:textColor="@color/colorGray"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/edittext_search_notes"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/recyclerview_main_notes"
+                android:layout_alignParentTop="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/btn_round"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:hint="搜索"
+                android:padding="10dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorGray"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/button_search_notes"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_round"
+                android:elevation="3dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+        <!--<Button-->
+        <!--android:id="@+id/button_main_search"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignTop="@id/recyclerview_main_notes"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:text="搜索"-->
+        <!--android:textSize="15sp"-->
+        <!--android:background="@drawable/btn_round"-->
+        <!--android:elevation="3dp"-->
+        <!--android:textColor="@color/colorGray"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
 
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="5dp"
-            android:paddingTop="60dp"
             android:id="@+id/recyclerview_main_notes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:paddingTop="60dp">
 
         </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
 
             android:orientation="horizontal">
 
             <android.support.design.widget.FloatingActionButton
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="10dp"
                 android:id="@+id/float_main_user"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="30dp" />
 
             <android.support.design.widget.FloatingActionButton
-                android:layout_marginLeft="55dp"
-                android:layout_marginRight="55dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="10dp"
                 android:id="@+id/float_main_note"
                 android:layout_width="40dp"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginBottom="30dp" />
 
             <android.support.design.widget.FloatingActionButton
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="10dp"
                 android:id="@+id/float_main_clipboard"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="30dp" />
         </LinearLayout>
 
     </RelativeLayout>

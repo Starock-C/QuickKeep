@@ -22,14 +22,7 @@
         android:gravity="end"
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"/>
-
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity ="start"-->
-        <!--android:gravity="end"-->
-        <!--android:text="this is menu"-->
-        <!--android:background="@color/colorWhite"/>-->
+        android:background="@color/colorWhite"
+        android:longClickable="true"/>
 
 </android.support.v4.widget.DrawerLayout>

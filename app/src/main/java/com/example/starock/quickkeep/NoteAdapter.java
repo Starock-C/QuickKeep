@@ -10,13 +10,33 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.starock.quickkeep.Database.Note;
+import com.example.starock.quickkeep.Database.NoteType;
+
+import org.litepal.LitePal;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> implements ItemTouchHelperAdapter{
     private List<Note> noteList;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    @Override
+    public void onItemDissmiss(int position) {
+        if (!noteList.isEmpty()){
+            Note note = noteList.get(position);
+            noteList.remove(position);
+
+            NoteType noteType = LitePal.where("name = ?",note.getType()).findFirst(NoteType.class);
+            noteType.setCount(noteType.getCount()-1);
+            noteType.save();
+
+            LitePal.delete(Note.class,note.getId());
+            notifyItemRemoved(position);
+            notifyItemChanged(position);
+            //notifyDataSetChanged();
+        }
+    }
 
     public interface OnItemClickListener {
         void onClick(int position);
@@ -88,6 +108,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return noteList.size();
+    }
+
+    public void removeItem(int adapterPosition){
+        if (adapterPosition==RecyclerView.NO_POSITION)
+            return;
+        if (adapterPosition >= 0 && adapterPosition < noteList.size()) {  //mDatas为数据集合
+            noteList.remove(adapterPosition);
+            notifyItemRemoved(adapterPosition);
+        }
     }
 
 }

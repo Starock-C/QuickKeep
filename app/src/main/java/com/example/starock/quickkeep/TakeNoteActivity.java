@@ -111,7 +111,7 @@ public class TakeNoteActivity extends AppCompatActivity {
 
     private void initTypes() {
         noteTypeList.clear();
-        noteTypeList.addAll(LitePal.findAll(NoteType.class));
+        noteTypeList.addAll(LitePal.where("name <> '未分类'").find(NoteType.class));
 
     }
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,10 +13,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.starock.quickkeep.Database.Note;
@@ -27,17 +33,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class MainFragment extends Fragment {
     private static List<Note> noteList = new ArrayList<>();
-    private static NoteAdapter noteAdapter = new NoteAdapter(noteList);
-//    private RecyclerView recyclerView;
+    public static NoteAdapter noteAdapter = new NoteAdapter(noteList);
+    private RecyclerView recyclerView;
+    private Button search;
+    private EditText keyword;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_main,container,false);
 
-        final RecyclerView recyclerView = view.findViewById(R.id.recyclerview_main_notes);
+        recyclerView = view.findViewById(R.id.recyclerview_main_notes);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(noteAdapter);
@@ -46,6 +56,7 @@ public class MainFragment extends Fragment {
 
         //悬浮按钮-进入用户界面
         FloatingActionButton  userInterface = view.findViewById(R.id.float_main_user);
+
         userInterface.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +76,6 @@ public class MainFragment extends Fragment {
         noteAdapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                NoteAdapter.ViewHolder viewHolder = (NoteAdapter.ViewHolder) recyclerView.getChildViewHolder(recyclerView.getChildAt(position));
                 Note note = noteList.get(position);
                 Toast.makeText(getContext(),"find note "+note.getTitle(),Toast.LENGTH_SHORT).show();
 
@@ -78,6 +88,26 @@ public class MainFragment extends Fragment {
             }
         });
         Log.i("MainFragment","onCreateView");
+
+
+        ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(noteAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
+
+
+        keyword = view.findViewById(R.id.edittext_search_notes);
+        search = view.findViewById(R.id.button_search_notes);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String info = keyword.getText().toString();
+                Toast.makeText(getContext(),info, Toast.LENGTH_SHORT).show();
+                noteList.clear();
+                noteList = LitePal.where("title like %?% or content like %?%",info,info).find(Note.class);
+                noteAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         return view;
     }
@@ -93,6 +123,21 @@ public class MainFragment extends Fragment {
         noteList.clear();
         noteList.addAll(LitePal.findAll(Note.class));
         Log.i("MainFragment","success");
+    }
+
+    private void funSearch(View view){
+        keyword = view.findViewById(R.id.edittext_search_notes);
+        search = view.findViewById(R.id.button_search_notes);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String info = keyword.getText().toString();
+                Toast.makeText(getContext(),info, Toast.LENGTH_SHORT).show();
+                noteList.clear();
+                noteList = LitePal.where("title like %?% or content like %?%",info,info).find(Note.class);
+                noteAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }
 
