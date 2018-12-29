@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -14,6 +15,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -39,13 +42,13 @@ public class MainFragment extends Fragment {
     private static List<Note> noteList = new ArrayList<>();
     public static NoteAdapter noteAdapter = new NoteAdapter(noteList);
     private RecyclerView recyclerView;
-    private Button search;
     private EditText keyword;
+    private Button search;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_main,container,false);
+        View view = inflater.inflate(R.layout.fragment_main,container,false);
 
         recyclerView = view.findViewById(R.id.recyclerview_main_notes);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
@@ -60,7 +63,7 @@ public class MainFragment extends Fragment {
         userInterface.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(),UserMainActivity.class);
+                Intent intent = new Intent(getActivity(),UserMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -68,7 +71,7 @@ public class MainFragment extends Fragment {
         takeNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(),TakeNoteActivity.class);
+                Intent intent = new Intent(getActivity(),TakeNoteActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,25 +92,9 @@ public class MainFragment extends Fragment {
         });
         Log.i("MainFragment","onCreateView");
 
-
         ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(noteAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
-
-
-        keyword = view.findViewById(R.id.edittext_search_notes);
-        search = view.findViewById(R.id.button_search_notes);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String info = keyword.getText().toString();
-                Toast.makeText(getContext(),info, Toast.LENGTH_SHORT).show();
-                noteList.clear();
-                noteList = LitePal.where("title like %?% or content like %?%",info,info).find(Note.class);
-                noteAdapter.notifyDataSetChanged();
-            }
-        });
-
 
         return view;
     }
@@ -125,20 +112,6 @@ public class MainFragment extends Fragment {
         Log.i("MainFragment","success");
     }
 
-    private void funSearch(View view){
-        keyword = view.findViewById(R.id.edittext_search_notes);
-        search = view.findViewById(R.id.button_search_notes);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String info = keyword.getText().toString();
-                Toast.makeText(getContext(),info, Toast.LENGTH_SHORT).show();
-                noteList.clear();
-                noteList = LitePal.where("title like %?% or content like %?%",info,info).find(Note.class);
-                noteAdapter.notifyDataSetChanged();
-            }
-        });
-    }
 }
 
 
