@@ -39,7 +39,7 @@ import java.util.List;
 import static android.support.constraint.Constraints.TAG;
 
 public class MainFragment extends Fragment {
-    private static List<Note> noteList = new ArrayList<>();
+    public static List<Note> noteList = new ArrayList<>();
     public static NoteAdapter noteAdapter = new NoteAdapter(noteList);
     private RecyclerView recyclerView;
     private EditText keyword;
@@ -104,6 +104,22 @@ public class MainFragment extends Fragment {
         super.onResume();
         initNotes();
         noteAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        keyword = getActivity().findViewById(R.id.edittext_search_notes);
+        search = getActivity().findViewById(R.id.button_search_notes);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String info = keyword.getText().toString();
+                noteList.clear();
+                noteList.addAll(LitePal.where("title like '%"+info+"%' or content like '%+info+%'").find(Note.class));
+                noteAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     public void initNotes(){

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.starock.quickkeep.Database.Note;
 import com.example.starock.quickkeep.Database.NoteType;
@@ -18,7 +19,8 @@ import org.litepal.LitePalApplication;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
+import static com.example.starock.quickkeep.MainFragment.noteList;
+import static com.example.starock.quickkeep.MainFragment.noteAdapter;
 public class MainActivity extends AppCompatActivity {
     private static List<NoteType> noteTypeList = new ArrayList<>();
     private static NoteTypeAdapter noteTypeAdapter = new NoteTypeAdapter(noteTypeList);
@@ -41,6 +43,19 @@ public class MainActivity extends AppCompatActivity {
         MainFragment mainFragment = new MainFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main_note,mainFragment).commit();
 
+        noteTypeAdapter.setOnItemClickListener(new NoteTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                NoteType noteType = noteTypeList.get(position);
+                Toast.makeText(getApplicationContext(),"find type "+noteType.getName(),Toast.LENGTH_SHORT).show();
+                noteList.clear();
+                if (noteType.getName().equals("全部"))
+                    noteList.addAll(LitePal.findAll(Note.class));
+                else
+                    noteList.addAll(LitePal.where("type = ?",noteType.getName()).find(Note.class));
+                noteAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -67,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
         }
         noteTypeList.clear();
         noteTypeList.addAll(LitePal.findAll(NoteType.class));
+        NoteType all = new NoteType();
+        all.setCount(LitePal.count(Note.class));
+        all.setName("全部");
+        all.setId(0);
+        noteTypeList.add(all);
     }
 
     private void setDrawerSlidingDistance(){
