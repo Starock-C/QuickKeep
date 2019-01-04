@@ -1,49 +1,38 @@
 package com.example.starock.quickkeep;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.starock.quickkeep.Database.Note;
+import com.example.starock.quickkeep.Note.ModifyNoteActivity;
+import com.example.starock.quickkeep.Note.NoteAdapter;
+import com.example.starock.quickkeep.Note.TakeNoteActivity;
+import com.example.starock.quickkeep.Search.SearchActivity;
 import com.example.starock.quickkeep.User.UserMainActivity;
 
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class MainFragment extends Fragment {
     public static List<Note> noteList = new ArrayList<>();
     public static NoteAdapter noteAdapter = new NoteAdapter(noteList);
     private RecyclerView recyclerView;
-    private EditText keyword;
-    private Button search;
+    public static Button btn_search;
 
     @Nullable
     @Override
@@ -55,6 +44,14 @@ public class MainFragment extends Fragment {
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(noteAdapter);
 
+        btn_search = view.findViewById(R.id.button_search_notes);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),SearchActivity.class);
+                startActivity(intent);
+            }
+        });
         FloatingActionButton takeNote = view.findViewById(R.id.float_main_note);
 
         //悬浮按钮-进入用户界面
@@ -102,24 +99,13 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initNotes();
+        Intent intent = getActivity().getIntent();
+        int isSearch = 0;
+        if ("Search".equals(intent.getAction()))
+            isSearch = intent.getIntExtra("Search",0);
+        if (isSearch == 0)
+            initNotes();
         noteAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        keyword = getActivity().findViewById(R.id.edittext_search_notes);
-        search = getActivity().findViewById(R.id.button_search_notes);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String info = keyword.getText().toString();
-                noteList.clear();
-                noteList.addAll(LitePal.where("title like '%"+info+"%' or content like '%+info+%'").find(Note.class));
-                noteAdapter.notifyDataSetChanged();
-            }
-        });
     }
 
     public void initNotes(){

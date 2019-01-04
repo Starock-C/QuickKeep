@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGray"
+    tools:context=".Search.SearchActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <EditText
+            android:padding="10dp"
+            android:textColorHint="@color/colorGray"
+            android:id="@+id/edittext_search_notes"
+            android:background="@drawable/btn_round2"
+            android:elevation="3dp"
+            android:layout_margin="5dp"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="" tools:targetApi="o"/>
+
+        <TextView
+            android:id="@+id/textview_search_notes"
+            android:text="搜索"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/linearlayout_round"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:elevation="3dp">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="搜索记录"
+                android:textSize="25dp"
+                android:textColor="@color/colorBlack"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_history"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:layout_marginStart="10dp"
+            android:background="@color/colorBlack"
+            android:layout_width="100dp"
+            android:layout_height="5px"/>
+
+        <TextView
+            android:id="@+id/textview_clear_history"
+            android:layout_margin="10dp"
+            android:text="清空历史"
+            android:textSize="20dp"
+            android:textColor="@color/colorRed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,23 +1,24 @@
-package com.example.starock.quickkeep;
+package com.example.starock.quickkeep.Note;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.starock.quickkeep.Database.Note;
 import com.example.starock.quickkeep.Database.NoteType;
+import com.example.starock.quickkeep.ItemTouchHelperAdapter;
+import com.example.starock.quickkeep.R;
 
 import org.litepal.LitePal;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> implements ItemTouchHelperAdapter{
+import static com.example.starock.quickkeep.MainActivity.noteTypeList;
+import static com.example.starock.quickkeep.MainActivity.noteTypeAdapter;
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> implements ItemTouchHelperAdapter {
     private List<Note> noteList;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -35,6 +36,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> im
             notifyItemRemoved(position);
             notifyItemChanged(position);
             //notifyDataSetChanged();
+
+            noteTypeList.clear();
+            noteTypeList.addAll(LitePal.findAll(NoteType.class));
+            NoteType all = new NoteType();
+            all.setCount(LitePal.count(Note.class));
+            all.setName("全部");
+            all.setId(0);
+            noteTypeList.add(all);
+            noteTypeAdapter.notifyDataSetChanged();
         }
     }
 
@@ -61,11 +71,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> im
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView noteTitle;
         TextView noteTime;
+        TextView noteType;
         TextView noteContent;
         public ViewHolder(View view){
             super(view);
             noteTitle = view.findViewById(R.id.textview_main_title);
             noteTime = view.findViewById(R.id.textview_main_time);
+            noteType = view.findViewById(R.id.textview_main_type);
             noteContent = view.findViewById(R.id.textview_main_content);
         }
     }
@@ -85,6 +97,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> im
         Note note = noteList.get(i);
         viewHolder.noteTitle.setText(note.getTitle());
         viewHolder.noteTime.setText(sdf.format(note.getDatetime()));
+        viewHolder.noteType.setText(note.getType());
         viewHolder.noteContent.setText(note.getContent());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener(){

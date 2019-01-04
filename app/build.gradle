@@ -31,4 +31,5 @@ dependencies {
     implementation 'org.litepal.android:java:3.0.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.tencent.qcloud:cosxml:5.4.18'
+    implementation 'com.github.Gennki:QRichText:v1.0.3'
 }

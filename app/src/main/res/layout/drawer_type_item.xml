@@ -7,12 +7,14 @@
     android:padding="10dp">
 
     <TextView
+        android:textColor="@color/colorWhite"
         android:layout_marginBottom="5dp"
         android:id="@+id/textview_drawer_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
+        android:textColor="@color/colorWhite"
         android:layout_marginBottom="20dp"
         android:id="@+id/textview_drawer_count"
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.starock.quickkeep;
 
+import android.graphics.Color;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,11 +20,14 @@ import org.litepal.LitePalApplication;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.qzb.richeditor.RE;
+
 import static com.example.starock.quickkeep.MainFragment.noteList;
 import static com.example.starock.quickkeep.MainFragment.noteAdapter;
 public class MainActivity extends AppCompatActivity {
-    private static List<NoteType> noteTypeList = new ArrayList<>();
-    private static NoteTypeAdapter noteTypeAdapter = new NoteTypeAdapter(noteTypeList);
+    public static List<NoteType> noteTypeList = new ArrayList<>();
+    public static NoteTypeAdapter noteTypeAdapter = new NoteTypeAdapter(noteTypeList);
 
     private DrawerLayout drawerLayout;
     @Override
@@ -31,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        initTypes();
-
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_drawer_type);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());

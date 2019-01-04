@@ -23,9 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TakeNoteActivity" />
-        <activity android:name=".ModifyNoteActivity" />
-        <activity android:name=".User.UserMainActivity"></activity>
+        <activity android:name=".Note.TakeNoteActivity" />
+        <activity android:name=".Note.ModifyNoteActivity" />
+        <activity android:name=".User.UserMainActivity" />
+        <activity android:name=".Search.SearchActivity"></activity>
     </application>
 
 </manifest>

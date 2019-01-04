@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".TakeNoteActivity">
+    tools:context=".Note.TakeNoteActivity">
 
     <EditText
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:textSize="25dp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
@@ -19,6 +21,9 @@
         android:layout_height="wrap_content" />
 
     <View
+        android:id="@+id/line_takenote_1"
+        android:layout_below="@id/edittext_takenote_title"
+        android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginTop="15dp"
@@ -27,6 +32,10 @@
         android:layout_height="10px"/>
 
     <LinearLayout
+        android:id="@+id/linearLayout_takenote_type"
+        android:layout_below="@id/line_takenote_1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -36,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin='15dp'
-            android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            android:layout_marginTop="10dp">
+        </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,32 +73,46 @@
                 android:background="@drawable/btn_round"
                 android:text="+" />
         </LinearLayout>
-
     </LinearLayout>
 
     <View
+        android:layout_below="@id/linearLayout_takenote_type"
+        android:id="@+id/line_takenote_2"
         android:layout_margin="15dp"
         android:background="@color/colorBlack"
         android:layout_width="200dp"
         android:layout_height="10px"/>
 
     <EditText
+        android:layout_below="@id/line_takenote_2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:id="@+id/edittext_takenote_content"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:background="@null"
         android:gravity="start"
         android:hint="有什么想写的都记下来吧(ง •_•)ง" />
 
-    <android.support.design.widget.FloatingActionButton
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/float_addNote_add"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginStart="160dp" />
+        <android.support.design.widget.FloatingActionButton
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/float_addNote_add"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="160dp" />
 
-</LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

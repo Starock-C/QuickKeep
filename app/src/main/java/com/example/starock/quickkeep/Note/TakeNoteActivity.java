@@ -1,23 +1,22 @@
-package com.example.starock.quickkeep;
+package com.example.starock.quickkeep.Note;
 
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.starock.quickkeep.Database.Note;
 import com.example.starock.quickkeep.Database.NoteType;
+import com.example.starock.quickkeep.Drawer.SelectTypeAdapter;
+import com.example.starock.quickkeep.R;
 
 import org.litepal.LitePal;
-import org.litepal.crud.LitePalSupport;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,23 +30,24 @@ public class TakeNoteActivity extends AppCompatActivity {
     private EditText newType;
     private Button addType;
     private NoteType noteType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_note);
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerview_add_type);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,5);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(selectTypeAdapter);
 
         FloatingActionButton addNote = findViewById(R.id.float_addNote_add);
+
+        title = findViewById(R.id.edittext_takenote_title);
+        content = findViewById(R.id.edittext_takenote_content);
         addNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                title = findViewById(R.id.edittext_takenote_title);
-                content = findViewById(R.id.edittext_takenote_content);
                 Note newNote = new Note();
                 newNote.setTitle("无标题");
                 if (!title.getText().toString().equals(""))
@@ -77,7 +77,6 @@ public class TakeNoteActivity extends AppCompatActivity {
         selectTypeAdapter.setOnItemClickListener(new SelectTypeAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                SelectTypeAdapter.ViewHolder viewHolder = (SelectTypeAdapter.ViewHolder) recyclerView.getChildViewHolder(recyclerView.getChildAt(position));
                 noteType = noteTypeList.get(position);
                 Toast.makeText(TakeNoteActivity.this,"find type "+noteType.getName(),Toast.LENGTH_SHORT).show();
             }
@@ -85,7 +84,7 @@ public class TakeNoteActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         initTypes();
         addType = findViewById(R.id.btn_takenote_addType);
@@ -103,8 +102,6 @@ public class TakeNoteActivity extends AppCompatActivity {
                         asyncTaskThread.doInBackground();
                     }
                 }
-
-
             }
         });
     }
@@ -112,7 +109,7 @@ public class TakeNoteActivity extends AppCompatActivity {
     private void initTypes() {
         noteTypeList.clear();
         noteTypeList.addAll(LitePal.where("name <> '未分类'").find(NoteType.class));
-
+        selectTypeAdapter.notifyDataSetChanged();
     }
 
 

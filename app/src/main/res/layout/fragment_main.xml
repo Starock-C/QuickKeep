@@ -12,33 +12,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:inputType="text"
-                android:id="@+id/edittext_search_notes"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/btn_round"
-                android:elevation="3dp"
-                android:gravity="center"
-                android:hint="搜索"
-                android:padding="10dp"
-                android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorGray"
-                android:textSize="15sp"
-                android:autofillHints="" tools:targetApi="o"/>
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
             <Button
+                android:text="@string/search"
                 android:id="@+id/button_search_notes"
-                android:background="@drawable/btn_round"
+                android:background="@drawable/btn_round2"
                 android:elevation="3dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp"/>
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
@@ -49,6 +34,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="60dp">
 
         </android.support.v7.widget.RecyclerView>
