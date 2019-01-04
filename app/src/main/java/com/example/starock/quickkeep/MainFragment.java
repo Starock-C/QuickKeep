@@ -33,6 +33,7 @@ public class MainFragment extends Fragment {
     public static NoteAdapter noteAdapter = new NoteAdapter(noteList);
     private RecyclerView recyclerView;
     public static Button btn_search;
+    public static int isSearch;
 
     @Nullable
     @Override
@@ -99,13 +100,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Intent intent = getActivity().getIntent();
-        int isSearch = 0;
-        if ("Search".equals(intent.getAction()))
-            isSearch = intent.getIntExtra("Search",0);
         if (isSearch == 0)
             initNotes();
         noteAdapter.notifyDataSetChanged();
+        isSearch = 0;
     }
 
     public void initNotes(){

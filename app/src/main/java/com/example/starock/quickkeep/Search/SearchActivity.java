@@ -22,6 +22,7 @@ import java.util.List;
 import static com.example.starock.quickkeep.MainFragment.noteList;
 import static com.example.starock.quickkeep.MainFragment.noteAdapter;
 import static com.example.starock.quickkeep.MainFragment.btn_search;
+import static com.example.starock.quickkeep.MainFragment.isSearch;
 
 public class SearchActivity extends AppCompatActivity {
     private static List<History> historyList = new ArrayList<>();
@@ -62,11 +63,7 @@ public class SearchActivity extends AppCompatActivity {
                     history.setContent(word);
                     history.save();
                 }
-                btn_search.setText(R.string.search+" : "+word);
-                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                intent.setAction("Search");
-                intent.putExtra("Search",1);
-                startActivity(intent);
+                isSearch = 1;
                 finish();
             }
         });
@@ -79,11 +76,7 @@ public class SearchActivity extends AppCompatActivity {
                 noteList.clear();
                 noteList.addAll(LitePal.where("title like '%"+word+"%' or content like '%"+word+"%'").find(Note.class));
                 noteAdapter.notifyDataSetChanged();
-                btn_search.setText(R.string.search+" : "+word);
-                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                intent.setAction("Search");
-                intent.putExtra("Search",1);
-                startActivity(intent);
+                isSearch = 1;
                 finish();
             }
         });
