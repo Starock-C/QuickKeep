@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +29,11 @@ public class SearchActivity extends AppCompatActivity {
     private static List<History> historyList = new ArrayList<>();
     private static HistoryAdapter historyAdapter = new HistoryAdapter(historyList);
     private EditText keyword;
-    private TextView search;
+//    private TextView search;
     private TextView clearHistory;
+    private ImageView clearHistory_image;
+    private ImageView search;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,15 @@ public class SearchActivity extends AppCompatActivity {
                 initHistories();
             }
         });
-        search = findViewById(R.id.textview_search_notes);
+        clearHistory_image = findViewById(R.id.imageview_clear_history);
+        clearHistory_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LitePal.deleteAll(History.class);
+                initHistories();
+            }
+        });
+        search = findViewById(R.id.imageview_search_notes);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -105,7 +105,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageView
+            android:src="@drawable/check_circle"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:id="@+id/float_modifyNote_add"

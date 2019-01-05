@@ -22,20 +22,27 @@
             android:background="@drawable/btn_round2"
             android:elevation="3dp"
             android:layout_margin="5dp"
-            android:layout_width="280dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:autofillHints="" tools:targetApi="o"/>
 
-        <TextView
-            android:id="@+id/textview_search_notes"
-            android:text="搜索"
-            android:textColor="@color/colorPrimary"
-            android:gravity="center"
+        <ImageView
+            android:id="@+id/imageview_search_notes"
             android:layout_gravity="center"
-            android:textSize="20sp"
+            android:src="@drawable/search"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:layout_height="30dp" />
+        <!--<TextView-->
+            <!--android:id="@+id/textview_search_notes"-->
+            <!--android:text="搜索"-->
+            <!--android:textColor="@color/colorPrimary"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:textSize="20sp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="wrap_content" />-->
 
     </LinearLayout>
 
@@ -50,6 +57,7 @@
         android:elevation="3dp">
 
         <LinearLayout
+            android:orientation="horizontal"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -58,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="搜索记录"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textColor="@color/colorBlack"/>
 
         </LinearLayout>
@@ -77,14 +85,34 @@
             android:layout_width="100dp"
             android:layout_height="5px"/>
 
-        <TextView
-            android:id="@+id/textview_clear_history"
-            android:layout_margin="10dp"
-            android:text="清空历史"
-            android:textSize="20dp"
-            android:textColor="@color/colorRed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageview_clear_history"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/delete" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/textview_clear_history"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="清空历史"
+                android:textSize="20sp"
+                android:textColor="@color/colorRed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

@@ -47,8 +47,9 @@
 
             android:orientation="horizontal">
 
-            <android.support.design.widget.FloatingActionButton
+            <ImageView
                 android:id="@+id/float_main_user"
+                android:src="@drawable/user"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="15dp"
@@ -56,8 +57,9 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="30dp" />
 
-            <android.support.design.widget.FloatingActionButton
+            <ImageView
                 android:id="@+id/float_main_note"
+                android:src="@drawable/plus_circle"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="55dp"
@@ -65,14 +67,6 @@
                 android:layout_marginRight="55dp"
                 android:layout_marginBottom="30dp" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/float_main_clipboard"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="30dp" />
         </LinearLayout>
 
     </RelativeLayout>

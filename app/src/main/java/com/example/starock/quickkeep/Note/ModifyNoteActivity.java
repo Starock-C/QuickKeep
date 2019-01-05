@@ -9,6 +9,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.starock.quickkeep.Database.Note;
@@ -41,7 +42,7 @@ public class ModifyNoteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(selectTypeAdapter);
 
-        FloatingActionButton save = findViewById(R.id.float_modifyNote_add);
+        ImageView save = findViewById(R.id.float_modifyNote_add);
 
         title = findViewById(R.id.edittext_modifynote_title);
         content = findViewById(R.id.edittext_modifynote_content);

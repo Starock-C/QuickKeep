@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.starock.quickkeep.Database.Note;
@@ -53,10 +54,10 @@ public class MainFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        FloatingActionButton takeNote = view.findViewById(R.id.float_main_note);
+        ImageView takeNote = view.findViewById(R.id.float_main_note);
 
         //悬浮按钮-进入用户界面
-        FloatingActionButton  userInterface = view.findViewById(R.id.float_main_user);
+        ImageView  userInterface = view.findViewById(R.id.float_main_user);
 
         userInterface.setOnClickListener(new View.OnClickListener() {
             @Override
