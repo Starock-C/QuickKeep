@@ -1,9 +1,13 @@
 package com.example.starock.quickkeep.User;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.starock.quickkeep.R;
 
@@ -18,26 +22,56 @@ import javax.mail.internet.MimeMultipart;
 
 public class UseHelperActivity extends AppCompatActivity {
     Button button;
+    EditText txt_email;
+    String address;
+    EditText suggestion;
+    String name;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_helper);
 
+        suggestion=findViewById(R.id.suggestion);
         button=findViewById(R.id.check);
+        SharedPreferences sharedPreferences=getBaseContext().getSharedPreferences("data",Context.MODE_PRIVATE);
+        address=sharedPreferences.getString("Email",null);
+        txt_email=findViewById(R.id.email);
+        if(address!=null){
+            char[] email=address.toCharArray();
+            txt_email.setText(email,0,email.length);
+        }
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try{
-                            Session session=getMailSession();
-                            MimeMessage m=createSimpleMessage(session);
-                            sendEmail(m,session);
-                        }catch (Exception e){
-                            e.printStackTrace();
+                if(txt_email.getText().toString().contains("www.")&&txt_email.getText().toString().contains("@")&&txt_email.getText().toString().contains(".com")){
+                    name=splitData(txt_email.getText().toString(),"@",".com");
+                }
+                else
+                    Toast.makeText(UseHelperActivity.this,"不符合邮箱规范哦！",Toast.LENGTH_LONG).show();
+
+                if(!(txt_email.getText().toString().equals(address))){
+                    Toast.makeText(UseHelperActivity.this,"请用登陆邮箱哇!",Toast.LENGTH_LONG).show();
+                }
+                else if(!("qq".equals(name))){
+                    Toast.makeText(UseHelperActivity.this,"抱歉，目前只能支持qq邮箱提意见哦！",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try{
+
+                                Session session=getMailSession();
+                                MimeMessage m=createSimpleMessage(session,txt_email.getText().toString(),suggestion.getText().toString());
+                                sendEmail(m,session);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                }).start();
+                    }).start();
+                }
+
+
 
             }
         });
@@ -63,22 +97,23 @@ public class UseHelperActivity extends AppCompatActivity {
         return session;
     }
 
-    public static MimeMessage createSimpleMessage(Session session) throws Exception {
+    public static MimeMessage createSimpleMessage(Session session,String address,String suggestion) throws Exception {
         //创建邮件
         MimeMessage message = new MimeMessage(session);
         //发件人
-        message.setFrom(new InternetAddress("284545631@qq.com", "管理员", "UTF-8"));
+
+        message.setFrom(new InternetAddress(address, "个人", "UTF-8"));
         //收件人
-        message.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress("1320234924@qq.com", "USER_BB", "UTF-8"));
+        message.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress("1320234924@qq.com", "管理员", "UTF-8"));
         //标题
-        message.setSubject("简单邮件");
+        message.setSubject("QuickKeep用户的反馈意见");
          /*InternetAddress[] addressArr = new InternetAddress[1];
          addressArr[0] = new InternetAddress("xxx@qq.com", "xxx", "UTF-8");
          //邮件回复接收人
          message.setReplyTo(addressArr);*/
         //封装MIME消息
         MimeBodyPart text = new MimeBodyPart();
-        text.setContent("你好啊！", "text/html; charset=UTF-8");
+        text.setContent(suggestion, "text/html; charset=UTF-8");
         //组合MIME消息
         MimeMultipart multipart = new MimeMultipart();
         multipart.addBodyPart(text);
@@ -96,6 +131,13 @@ public class UseHelperActivity extends AppCompatActivity {
         transport.sendMessage(msg, msg.getAllRecipients());
         transport.close();
     }
+
+    public String splitData(String str, String strStart, String strEnd) {
+        String tempStr;
+        tempStr = str.substring(str.indexOf(strStart) + 1, str.lastIndexOf(strEnd));
+        return tempStr;
+    }
+
 
 
 }
