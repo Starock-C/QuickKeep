@@ -30,6 +30,7 @@
         <activity android:name=".User.AboutusActivity"/>
         <activity android:name=".User.SettingActivity"/>
         <activity android:name=".User.UseHelperActivity"/>
+        <activity android:name=".LoginActivity"/>
     </application>
 
 </manifest>
