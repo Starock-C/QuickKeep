@@ -26,6 +26,8 @@
         <activity android:name=".TakeNoteActivity" />
         <activity android:name=".ModifyNoteActivity" />
         <activity android:name=".User.UserMainActivity"></activity>
+        <activity android:name=".User.AboutusActivity"/>
+        <activity android:name=".User.SettingActivity"/>
     </application>
 
 </manifest>

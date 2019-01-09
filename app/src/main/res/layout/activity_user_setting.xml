@@ -14,21 +14,21 @@
         android:id="@+id/tet_title"
         android:text="应用设置"
         android:textSize="30dp"
-        android:textColor="@color/colorLightGray"
         android:gravity="center"
+        android:textColor="@color/gray"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_below="@id/txt_blank1"/>
     <TextView
         android:id="@+id/txt_blank2"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_below="@id/tet_title"/>
 
     <RelativeLayout
         android:id="@+id/layout_code"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_below="@id/txt_blank2"
         android:paddingLeft="10dp"
@@ -37,14 +37,16 @@
         android:paddingBottom="4dp">
         <ImageView
             android:id="@+id/i1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/s1"
+            android:padding="6dp"
             android:layout_gravity="center_vertical"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="25dp"
+            android:paddingLeft="15dp"
             android:layout_toRightOf="@id/i1">
             <TextView
                 android:layout_width="wrap_content"
@@ -56,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="保护你的隐私"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/gray"
                 android:textSize="12dp"
                 android:layout_gravity="bottom"/>
 
@@ -78,23 +80,26 @@
     <RelativeLayout
         android:id="@+id/layout_clear"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_below="@id/layout_code"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="4dp"
-        android:paddingBottom="4dp">
+        android:paddingBottom="4dp"
+        >
         <ImageView
             android:id="@+id/i2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/s2"
+            android:padding="9dp"
             android:layout_gravity="center_vertical"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/i2"
-            android:paddingLeft="25dp"
+            android:paddingLeft="15dp"
             android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -109,7 +114,7 @@
     <RelativeLayout
         android:id="@+id/layout_help"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_below="@id/layout_clear"
         android:paddingLeft="10dp"
@@ -118,14 +123,16 @@
         android:paddingBottom="4dp">
         <ImageView
             android:id="@+id/i3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/s3"
+            android:padding="7dp"
             android:layout_gravity="center_vertical"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/i3"
-            android:paddingLeft="25dp"
+            android:paddingLeft="15dp"
             android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -140,23 +147,26 @@
     <RelativeLayout
         android:id="@+id/layout_aboutus"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_below="@id/layout_help"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="4dp"
-        android:paddingBottom="4dp">
+        android:paddingBottom="4dp"
+        >
         <ImageView
             android:id="@+id/i4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/s4"
+            android:padding="5dp"
             android:layout_gravity="center_vertical"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/i4"
-            android:paddingLeft="25dp"
+            android:paddingLeft="15dp"
             android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"

@@ -1,9 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:padding="10dp"
     tools:context=".User.UserMainActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/blank1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        />
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/blank1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/usermain2"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@id/l1"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:text="用户名"/>
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/username"
+        android:text="你还没输入你的邮箱哦!"
+        android:textColor="@color/gray"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/blank2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/email"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_way"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/blank2"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+        <ImageView
+            android:id="@+id/um1"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/usermain1"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:layout_toRightOf="@id/um1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="如何收集"
+                android:textSize="18dp"/>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_way"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        >
+        <ImageView
+            android:id="@+id/um2"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:padding="8dp"
+            android:src="@drawable/usermain2"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/um2"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="个人中心"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_setting"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+        <ImageView
+            android:id="@+id/um3"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:src="@drawable/usermain3"
+            android:layout_gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/um3"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="应用设置"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_sugg"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_setting"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        >
+        <ImageView
+            android:id="@+id/um4"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:src="@drawable/usermain4"
+            android:layout_gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/um4"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="意见反馈"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_upload"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_sugg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        >
+        <ImageView
+            android:id="@+id/um5"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:src="@drawable/usermain5"
+            android:layout_gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/um5"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="立即同步"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/blank2"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/listDivider" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/layout_way"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/listDivider" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/layout_center"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/listDivider" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/layout_setting"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/listDivider" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/layout_sugg"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/listDivider" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/layout_upload"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/listDivider" />
+</RelativeLayout>
