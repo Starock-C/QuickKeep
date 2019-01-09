@@ -23,8 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Search.SearchActivity"/>
         <activity android:name=".Note.TakeNoteActivity" />
-        <activity android:name="Note.ModifyNoteActivity" />
+        <activity android:name=".Note.ModifyNoteActivity" />
         <activity android:name=".User.UserMainActivity"></activity>
         <activity android:name=".User.AboutusActivity"/>
         <activity android:name=".User.SettingActivity"/>
