@@ -1,12 +1,14 @@
 package com.example.starock.quickkeep.User;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.starock.quickkeep.R;
@@ -26,11 +28,23 @@ public class UseHelperActivity extends AppCompatActivity {
     String address;
     EditText suggestion;
     String name;
+    EditText passcode;
+    TextView howtogetpasscode;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_helper);
 
+        howtogetpasscode=findViewById(R.id.howtogetpasscode);
+        howtogetpasscode.setClickable(true);
+        howtogetpasscode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(UseHelperActivity.this,HelperActivity.class);
+                startActivity(intent);
+            }
+        });
         suggestion=findViewById(R.id.suggestion);
+        passcode=findViewById(R.id.txt_passcode);
         button=findViewById(R.id.check);
         SharedPreferences sharedPreferences=getBaseContext().getSharedPreferences("data",Context.MODE_PRIVATE);
         address=sharedPreferences.getString("Email",null);
@@ -60,28 +74,17 @@ public class UseHelperActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             try{
-
                                 Session session=getMailSession();
                                 MimeMessage m=createSimpleMessage(session,txt_email.getText().toString(),suggestion.getText().toString());
-                                sendEmail(m,session);
+                                sendEmail(m,session,txt_email.getText().toString(),passcode.getText().toString());
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
                         }
                     }).start();
                 }
-
-
-
             }
         });
-
-
-
-
-
-
-
 
     }
 
@@ -123,11 +126,11 @@ public class UseHelperActivity extends AppCompatActivity {
         return message;
     }
 
-    public static void sendEmail(MimeMessage msg, Session session) throws Exception {
+    public static void sendEmail(MimeMessage msg, Session session,String emailaddress,String passcode) throws Exception {
         //得到transport对象
         Transport transport = session.getTransport();
-        //连接邮件服务器(qq邮箱需要使用授权码)password为qq邮箱授权码 //（***此处邮箱必须和发件人一致***）
-        transport.connect("smtp.qq.com", "284545631@qq.com", "gvbcaraxmjlbbhhb"); //发送邮件
+        //连接邮件服务器(qq邮箱需要使用授权码)password为qq邮箱授权码 //（***此处邮箱必须和发件人一致***）gvbcaraxmjlbbhhb
+        transport.connect("smtp.qq.com", emailaddress, passcode); //发送邮件""
         transport.sendMessage(msg, msg.getAllRecipients());
         transport.close();
     }

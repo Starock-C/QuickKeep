@@ -31,6 +31,7 @@
         <activity android:name=".User.SettingActivity"/>
         <activity android:name=".User.UseHelperActivity"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".User.HelperActivity"/>
     </application>
 
 </manifest>

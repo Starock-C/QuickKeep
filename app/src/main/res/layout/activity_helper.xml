@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/title_getpasscode"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="获取授权码"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="@color/gray"/>
+
+    <TextView
+        android:id="@+id/step1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_getpasscode"
+        android:text="1.首先，你需要打开网页版的QQ邮箱"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlack"
+        android:padding="2dp"/>
+    <TextView
+        android:id="@+id/step2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/step1"
+        android:text="2.设置->账号"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlack"
+        android:padding="2dp"/>
+    <ImageView
+        android:id="@+id/im1"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:layout_below="@id/step2"
+        android:src="@drawable/step1"/>
+        <TextView
+            android:id="@+id/step3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/im1"
+            android:text="3.确保SMTP服务开启，然后点击获取授权码"
+            android:textSize="16dp"
+            android:textColor="@color/colorBlack"
+            android:padding="2dp"/>
+        <ImageView
+            android:id="@+id/im2"
+            android:layout_width="match_parent"
+            android:layout_height="235dp"
+            android:layout_below="@id/step3"
+            android:src="@drawable/step2"/>
+
+    </RelativeLayout>
+</ScrollView>
