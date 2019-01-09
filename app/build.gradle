@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        pickFirst 'META-INF/*'
+        //pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
+    }
 }
 
 dependencies {
@@ -32,4 +36,11 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.tencent.qcloud:cosxml:5.4.18'
     implementation 'com.github.Gennki:QRichText:v1.0.3'
+
+    implementation 'com.sun.mail:android-mail:1.6.1'
+    implementation 'com.sun.mail:android-activation:1.6.1'
+
+    configurations{
+        all*.exclude group: 'javax.activation', module: 'activation'
+    }
 }

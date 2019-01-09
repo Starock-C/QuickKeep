@@ -49,6 +49,8 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.layout_sugg:
+                Intent intent1=new Intent(UserMainActivity.this,UseHelperActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.layout_upload:
                 break;

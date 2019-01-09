@@ -53,59 +53,62 @@
         android:gravity="center"
         android:textColor="@color/gray"/>
 
-    <TextView
-        android:id="@+id/txt_blank3"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_below="@+id/banben"/>
-    <TextView
-        android:id="@+id/weixin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="客服微信:"
-        android:gravity="center"
-        android:layout_below="@id/txt_blank3"
-        android:textSize="13dp"/>
-    <TextView
-        android:id="@+id/weixin1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/weixin"
-        android:text="woaichizhaji"
-        android:textSize="13dp"
-        android:gravity="center"/>
-    <TextView
-        android:id="@+id/txt_blank4"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_below="@id/weixin1"/>
-    <TextView
-        android:id="@+id/kefuemail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_blank4"
-        android:text="客服邮箱："
-        android:gravity="center"
-        android:textSize="13dp"/>
-    <TextView
-        android:id="@id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/kefuemail"
-        android:text="woaichizhaji@nicai.com"
-        android:gravity="center"
-        android:textSize="13dp"/>
-    <TextView
-        android:id="@+id/txt_blank5"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_below="@id/email"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_blank5"
-        android:text="Copyright 2019 QuickKeep Corporation"
-        android:gravity="center"
-        android:textSize="13dp"/>
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/weixin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="客服微信:"
+            android:gravity="center"
+            android:textSize="13dp"/>
+        <TextView
+            android:id="@+id/weixin1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weixin"
+            android:text="woaichizhaji"
+            android:textSize="13dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/txt_blank4"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@id/weixin1"/>
+        <TextView
+            android:id="@+id/kefuemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_blank4"
+            android:text="客服邮箱："
+            android:gravity="center"
+            android:textSize="13dp"/>
+        <TextView
+            android:id="@id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/kefuemail"
+            android:text="woaichizhaji@nicai.com"
+            android:gravity="center"
+            android:textSize="13dp"/>
+        <TextView
+            android:id="@+id/txt_blank5"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@id/email"/>
+        <TextView
+            android:id="@+id/banquan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_blank5"
+            android:text="Copyright 2019 QuickKeep Corporation"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>

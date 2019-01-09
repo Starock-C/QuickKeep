@@ -8,8 +8,10 @@ import android.widget.RelativeLayout;
 
 import com.example.starock.quickkeep.R;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout aboutuslayout;
+    RelativeLayout useHelper;
+    RelativeLayout cleardata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +19,26 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_setting);
 
         aboutuslayout=findViewById(R.id.layout_aboutus);
-        aboutuslayout.setClickable(true);
-        aboutuslayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        useHelper=findViewById(R.id.layout_help);
+        cleardata=findViewById(R.id.layout_clear);
+        aboutuslayout.setOnClickListener(this);
+        useHelper.setOnClickListener(this);
+        cleardata.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.layout_aboutus:
                 Intent intent=new Intent(SettingActivity.this,AboutusActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+            case R.id.layout_help:
+                //
+                break;
+            case R.id.layout_clear:
+                //
+                break;
+        }
     }
 }
