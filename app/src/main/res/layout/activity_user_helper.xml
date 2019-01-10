@@ -47,7 +47,7 @@
         android:paddingLeft="20dp"
         android:textColorHint="@color/gray"
         android:textColor="@color/colorBlack"
-        android:hint="需要授权码哦！"/>
+        android:hint="需要QQ授权码哦！"/>
 
     <EditText
         android:id="@+id/suggestion"
@@ -81,6 +81,12 @@
         android:paddingLeft="20dp"
         android:layout_below="@id/check"
         android:textColor="@color/colorBlack"/>
+    <ImageView
+        android:id="@+id/im_back_finish"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/left_square"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

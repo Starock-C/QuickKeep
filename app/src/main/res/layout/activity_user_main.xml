@@ -34,13 +34,15 @@
         android:layout_below="@id/l1"
         android:gravity="center"
         android:textColor="@color/gray"
-        android:text="用户名"/>
+        android:text="用户名"
+        android:textSize="18dp"/>
     <TextView
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_below="@id/username"
-        android:text="你还没输入你的邮箱哦!"
+        android:text="您还没输入您的邮箱哦!"
+        android:textSize="15dp"
         android:textColor="@color/gray"
         android:gravity="center"/>
     <TextView
@@ -220,9 +222,11 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/im_close_ac"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
+        android:src="@drawable/close_square"
         />
 
     <View
