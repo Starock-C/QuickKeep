@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.example.starock.quickkeep.Drawer.ClipItemAdapter;
 import com.example.starock.quickkeep.Drawer.NoteTypeAdapter;
 import com.example.starock.quickkeep.User.LockInsertPwdActivity;
 import com.example.starock.quickkeep.User.LockPasswordActivity;
+import com.example.starock.quickkeep.User.SettingActivity;
 
 import org.litepal.LitePal;
 
@@ -51,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
 //        initTypes();
 
         IS_FOREGROUND=true;
+        SharedPreferences sharedPreferences=MainActivity.this.getSharedPreferences("loginInfo",Context.MODE_PRIVATE);
+        Boolean lockstation = sharedPreferences.getBoolean("Lockstation",false);
+        if(lockstation==true) {
+            Intent intent=new Intent(BaseApplication.getContext(),LockPasswordActivity.class);
+            startActivity(intent);
+        }
         RecyclerView recyclerView = findViewById(R.id.recyclerview_drawer_type);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(linearLayoutManager);
