@@ -13,6 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public static NoteTypeAdapter noteTypeAdapter = new NoteTypeAdapter(noteTypeList);
     public static List<ClipItem> clipItemList = new ArrayList<>();
     public static ClipItemAdapter clipItemAdapter = new ClipItemAdapter(clipItemList);
+    private ImageView delete_clipitem;
 
     private DrawerLayout drawerLayout;
     @Override
@@ -101,6 +104,16 @@ public class MainActivity extends AppCompatActivity {
                 noteList.addAll(LitePal.findAll(Note.class));
                 noteAdapter.notifyDataSetChanged();
                 LitePal.delete(ClipItem.class,clipItem.getId());
+                clipItemAdapter.notifyDataSetChanged();
+            }
+        });
+
+        delete_clipitem = findViewById(R.id.imageview_delete_clipitem);
+        delete_clipitem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LitePal.deleteAll(ClipItem.class);
+                clipItemList.clear();
                 clipItemAdapter.notifyDataSetChanged();
             }
         });
@@ -171,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             Field mMinDrawerMarginField = DrawerLayout.class.getDeclaredField("mMinDrawerMargin");
             mMinDrawerMarginField.setAccessible(true);
             int minDrawerMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                    800, getResources().getDisplayMetrics());
+                    600, getResources().getDisplayMetrics());
             mMinDrawerMarginField.set(drawerLayout, minDrawerMargin);
         } catch (Exception e)
         {

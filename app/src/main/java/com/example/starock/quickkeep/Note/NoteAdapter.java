@@ -22,6 +22,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> im
     private List<Note> noteList;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+
     @Override
     public void onItemDissmiss(int position) {
         if (!noteList.isEmpty()){

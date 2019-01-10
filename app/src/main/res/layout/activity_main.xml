@@ -33,13 +33,28 @@
         android:layout_gravity="end"
         android:background="@color/colorBlack">
 
-        <TextView
-            android:padding="10dp"
-            android:text="历史剪贴板"
-            android:textSize="15dp"
-            android:textColor="@color/colorWhite"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:padding="10dp"
+                android:text="剪贴板"
+                android:textSize="15dp"
+                android:textColor="@color/colorWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageview_delete_clipitem"
+                android:src="@drawable/delete_white"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
 
         <View
             android:layout_marginStart="10dp"
