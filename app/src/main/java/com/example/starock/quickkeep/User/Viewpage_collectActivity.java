@@ -1,9 +1,11 @@
 package com.example.starock.quickkeep.User;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
@@ -13,17 +15,114 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-
+import android.widget.ImageView;
+import android.widget.VideoView;
+import android.net.Uri;
 import com.example.starock.quickkeep.R;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Viewpage_collectActivity extends Activity {
-    private View view1,view2;
+  /*  private View view1,view2;
     private List<View> viewList;
     private ViewPager viewPager;
-   /* private SharedPreferences mPreferences;*/
-    protected void onCreate(Bundle savedInstanceState){
+   *//* private SharedPreferences mPreferences;*/
+  private VideoView video;
+    private ImageView img;
+    int i=0;
+    private List list=new ArrayList();
+    Handler handler=new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch ((msg.what)){
+                case 1:
+                    video.setVisibility(View.VISIBLE);
+                    img.setVisibility(View.GONE);
+                    video.setVideoURI(Uri.parse(list.get(i).toString()));
+                    video.requestFocus();
+                    video.start();
+                    break;
+                case 2:
+                    video.setVisibility(View.GONE);
+                    img.setVisibility(View.VISIBLE);
+                    ImageLoader.getInstance().displayImage(list.get(i).toString(),img);
+                    i++;
+                    waitTtime();
+                    break;
+            }
+            return false;
+        }
+    });
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_howtocollect);
+        initView();
+        setDate();
+        startPhoto();
+        video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                i++;
+                startPhoto();
+                return true;
+            }
+        });
+        video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                i++;
+                startPhoto();
+            }
+        });
+        FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+    private void setDate(){
+        list.add(Uri.parse("android.resource://"+getPackageName()+"/raw/yanshi"));
+        list.add("drawable://"+R.drawable.ic_yanshi1);
+        list.add(("drawable://"+R.drawable.ic_yanshi2));
+        list.add("drawable://"+R.drawable.ic_yanshi3);
+    }
+    private void initView(){
+        video=findViewById(R.id.video);
+        img=findViewById(R.id.img);
+    }
+    private void startPhoto(){
+        if(i<list.size()){
+            if (list.get(i).toString().contains("resource")){
+                handler.sendEmptyMessage(1);
+            }else {
+                handler.sendEmptyMessage(2);
+            }
+        }else {
+            i=0;
+            if (list.get(i).toString().contains("resource")){
+                handler.sendEmptyMessage(1);
+            }else {
+                handler.sendEmptyMessage(2);
+            }
+        }
+
+    }
+    private void waitTtime(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startPhoto();
+            }
+        }).start();
+    }
+    /*protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -76,6 +175,5 @@ public class Viewpage_collectActivity extends Activity {
             }
         });
     }
-
-
+*/
 }

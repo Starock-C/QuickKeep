@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity  {
            public void onClick(View v) {
                attemptLogin();
                SharedPreferences.Editor editor=getSharedPreferences("loginInfo",MODE_PRIVATE).edit();
-               editor.putString("Email",mEmailView.toString());
+               editor.putString("Email",mEmailView.getText().toString());
                editor.putString("Passwork",mPasswordView.getText().toString());
                editor.putBoolean("isLogin",true);
                editor.apply();
