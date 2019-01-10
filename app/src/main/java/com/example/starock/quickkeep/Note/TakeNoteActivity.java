@@ -37,6 +37,7 @@ public class TakeNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_note);
+        LitePal.initialize(this);
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerview_add_type);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.VERTICAL);

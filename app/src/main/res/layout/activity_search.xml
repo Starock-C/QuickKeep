@@ -22,7 +22,7 @@
             android:background="@drawable/btn_round2"
             android:elevation="3dp"
             android:layout_margin="5dp"
-            android:layout_width="320dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:autofillHints="" tools:targetApi="o"/>
 

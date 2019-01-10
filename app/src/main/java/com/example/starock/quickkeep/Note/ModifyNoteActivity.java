@@ -37,6 +37,7 @@ public class ModifyNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_note);
+        LitePal.initialize(this);
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerview_modify_add_type);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.VERTICAL);
