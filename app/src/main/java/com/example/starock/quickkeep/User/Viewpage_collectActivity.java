@@ -31,7 +31,7 @@ public class Viewpage_collectActivity extends Activity {
    *//* private SharedPreferences mPreferences;*/
   private Context context;
   private VideoView video;
-    private ImageView img;
+
     int i=0;
     private List list=new ArrayList();
     Handler handler=new Handler(new Handler.Callback() {
@@ -40,18 +40,11 @@ public class Viewpage_collectActivity extends Activity {
             switch ((msg.what)){
                 case 1:
                     video.setVisibility(View.VISIBLE);
-                    img.setVisibility(View.GONE);
                     video.setVideoURI(Uri.parse(list.get(i).toString()));
                     video.requestFocus();
                     video.start();
                     break;
-                case 2:
-                    video.setVisibility(View.GONE);
-                    img.setVisibility(View.VISIBLE);
-                    ((ImageView) findViewById(R.id.img)).setImageDrawable((Drawable) list.get(i));
-                    i++;
-                    waitTtime();
-                    break;
+
             }
             return false;
         }
@@ -93,7 +86,7 @@ public class Viewpage_collectActivity extends Activity {
     }
     private void initView(){
         video=findViewById(R.id.video);
-        img=findViewById(R.id.img);
+      
     }
     private void startPhoto(){
         if(i<list.size()){
