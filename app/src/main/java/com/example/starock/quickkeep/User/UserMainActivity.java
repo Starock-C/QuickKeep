@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -15,6 +16,7 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
     RelativeLayout setting;
     RelativeLayout suggestion;
     RelativeLayout upload;
+    ImageView close;
 
 
     @Override
@@ -27,12 +29,14 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
         setting=findViewById(R.id.layout_setting);
         suggestion=findViewById(R.id.layout_sugg);
         upload=findViewById(R.id.layout_upload);
+        close=findViewById(R.id.im_close_ac);
 
         howtosearch.setOnClickListener(this);
         center.setOnClickListener(this);
         setting.setOnClickListener(this);
         suggestion.setOnClickListener(this);
         upload.setOnClickListener(this);
+        close.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +57,9 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent1);
                 break;
             case R.id.layout_upload:
+                break;
+            case R.id.im_close_ac:
+                UserMainActivity.this.finish();
                 break;
         }
     }

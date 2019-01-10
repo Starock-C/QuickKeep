@@ -108,6 +108,16 @@
                 android:textSize="18dp"
                 />
         </LinearLayout>
+        <TextView
+            android:id="@+id/cachesum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingRight="10dp"
+            android:text="0B"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:textColor="@color/gray"/>
 
     </RelativeLayout>
 
@@ -179,10 +189,11 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/im_back_ac"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
-        />
+        android:src="@drawable/left_square"/>
 
     <View
         android:layout_width="match_parent"
