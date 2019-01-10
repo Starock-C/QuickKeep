@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.example.starock.quickkeep.User.PasswordActivity;
+import com.example.starock.quickkeep.User.LockPasswordActivity;
 
 import org.litepal.LitePal;
 
@@ -43,7 +43,7 @@ public class BaseApplication extends Application {
                 //判断是否需要弹出密码锁来
                 if (IS_FOREGROUND) {
                     //如果应用程序恰好处在前台，则弹出密码锁界面来
-                    Intent intent1=new Intent(BaseApplication.getContext(),PasswordActivity.class);
+                    Intent intent1=new Intent(BaseApplication.getContext(),LockPasswordActivity.class);
                     startActivity(intent1);
                 }
             } else if (LOCKSTATION==true && action.equals(Intent.ACTION_SCREEN_OFF)) {

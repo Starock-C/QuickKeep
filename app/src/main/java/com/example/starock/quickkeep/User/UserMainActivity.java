@@ -32,6 +32,10 @@ import com.tencent.cos.xml.transfer.TransferStateListener;
 import com.tencent.qcloud.core.auth.QCloudCredentialProvider;
 import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider;
 
+import static com.example.starock.quickkeep.BaseApplication.IS_FOREGROUND;
+import static com.example.starock.quickkeep.BaseApplication.LOCKSTATION;
+import static com.example.starock.quickkeep.MainActivity.isAppOnForeground;
+
 public class UserMainActivity extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout howtosearch;
     RelativeLayout center;
@@ -47,6 +51,7 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
 
+        IS_FOREGROUND=true;
         howtosearch=findViewById(R.id.layout_way);
         center=findViewById(R.id.layout_center);
         setting=findViewById(R.id.layout_setting);
@@ -177,6 +182,23 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
                     Log.d("TEST", "Task state:" + state.name());
                 }
             });
+        }
+    }
+
+    protected void onStop() {
+        super.onStop();
+        if(LOCKSTATION==true && !isAppOnForeground(this)) {
+            IS_FOREGROUND=false;
+        }
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+        if(LOCKSTATION==true && !IS_FOREGROUND) {
+            IS_FOREGROUND = true;
+            /*Intent intent=new Intent(UserMainActivity.this,LockInsertPwdActivity.class);
+            startActivity(intent);*/
+
         }
     }
 }

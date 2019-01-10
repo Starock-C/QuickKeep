@@ -55,7 +55,7 @@ public class UseHelperActivity extends AppCompatActivity {
         suggestion=findViewById(R.id.suggestion);
         passcode=findViewById(R.id.txt_passcode);
         button=findViewById(R.id.check);
-        SharedPreferences sharedPreferences=getBaseContext().getSharedPreferences("data",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=getBaseContext().getSharedPreferences("loginInfo",Context.MODE_PRIVATE);
         address=sharedPreferences.getString("Email",null);
         txt_email=findViewById(R.id.email);
         if(address!=null){
@@ -66,7 +66,7 @@ public class UseHelperActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txt_email.getText().toString().contains("www.")&&txt_email.getText().toString().contains("@")&&txt_email.getText().toString().contains(".com")){
+                if(txt_email.getText().toString().contains("@")&&txt_email.getText().toString().contains(".com")){
                     name=splitData(txt_email.getText().toString(),"@",".com");
                 }
                 else

@@ -5,13 +5,11 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,17 +21,15 @@ import com.example.starock.quickkeep.Database.Note;
 import com.example.starock.quickkeep.Database.NoteType;
 import com.example.starock.quickkeep.Drawer.ClipItemAdapter;
 import com.example.starock.quickkeep.Drawer.NoteTypeAdapter;
-import com.example.starock.quickkeep.User.PasswordActivity;
+import com.example.starock.quickkeep.User.LockInsertPwdActivity;
+import com.example.starock.quickkeep.User.LockPasswordActivity;
 
 import org.litepal.LitePal;
-import org.litepal.LitePalApplication;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import cn.qzb.richeditor.RE;
 
 import static com.example.starock.quickkeep.BaseApplication.IS_FOREGROUND;
 import static com.example.starock.quickkeep.BaseApplication.LOCKSTATION;
@@ -54,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         LitePal.initialize(this);
 //        initTypes();
 
+        IS_FOREGROUND=true;
         RecyclerView recyclerView = findViewById(R.id.recyclerview_drawer_type);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -184,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             Field mMinDrawerMarginField = DrawerLayout.class.getDeclaredField("mMinDrawerMargin");
             mMinDrawerMarginField.setAccessible(true);
             int minDrawerMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                    600, getResources().getDisplayMetrics());
+                    800, getResources().getDisplayMetrics());
             mMinDrawerMarginField.set(drawerLayout, minDrawerMargin);
         } catch (Exception e)
         {
@@ -216,9 +213,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         if(LOCKSTATION==true && !IS_FOREGROUND) {
             IS_FOREGROUND = true;
-            Intent intent=new Intent(MainActivity.this,PasswordActivity.class);
+            Intent intent=new Intent(BaseApplication.getContext(),LockPasswordActivity.class);
             startActivity(intent);
-
         }
     }
 }

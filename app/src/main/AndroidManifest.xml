@@ -37,6 +37,8 @@
         <activity android:name=".User.UserManagerActivity"/>
         <activity android:name=".User.Viewpage_collectActivity"/>
         <activity android:name=".User.HelperActivity"/>
+        <activity android:name=".User.LockPasswordActivity"/>
+        <activity android:name=".User.LockInsertPwdActivity"/>
     </application>
 
 </manifest>

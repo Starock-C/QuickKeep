@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -57,13 +56,20 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     LOCKSTATION=true;
-                    SharedPreferences.Editor editor=BaseApplication.getContext().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor=BaseApplication.getContext().getSharedPreferences("loginInfo",MODE_PRIVATE).edit();
                     editor.putBoolean("Lockstation",LOCKSTATION);
                     editor.apply();
+                    SharedPreferences sharedPreferences=SettingActivity.this.getSharedPreferences("loginInfo",Context.MODE_PRIVATE);
+                    String lockpwd = sharedPreferences.getString("lockpwd",null);
+                    if(lockpwd==null){
+                        Intent intent=new Intent(SettingActivity.this,LockInsertPwdActivity.class);
+                        startActivity(intent);
+                    }
                 } else {
                     LOCKSTATION=false;
-                    SharedPreferences.Editor editor=BaseApplication.getContext().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor=BaseApplication.getContext().getSharedPreferences("loginInfo",MODE_PRIVATE).edit();
                     editor.putBoolean("Lockstation",LOCKSTATION);
+                    editor.putString("lockpwd",null);
                     editor.apply();
                 }
             }
@@ -82,14 +88,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         super.onRestart();
         if(LOCKSTATION==true && !IS_FOREGROUND) {
             IS_FOREGROUND = true;
-            Intent intent=new Intent(SettingActivity.this,PasswordActivity.class);
+            Intent intent=new Intent(SettingActivity.this,LockPasswordActivity.class);
             startActivity(intent);
 
         }
     }
     protected void onResume(){
         super.onResume();
-        SharedPreferences sharedPreferences=SettingActivity.this.getSharedPreferences("data",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=SettingActivity.this.getSharedPreferences("loginInfo",Context.MODE_PRIVATE);
         LOCKSTATION = sharedPreferences.getBoolean("Lockstation",false);
         lockswitch.setChecked(LOCKSTATION);
     }
