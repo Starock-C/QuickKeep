@@ -134,7 +134,7 @@
             android:id="@+id/um3"
             android:layout_width="37dp"
             android:layout_height="match_parent"
-            android:padding="8dp"
+            android:padding="7dp"
             android:src="@drawable/usermain3"
             android:layout_gravity="center_vertical"/>
         <LinearLayout
@@ -168,7 +168,7 @@
             android:id="@+id/um4"
             android:layout_width="37dp"
             android:layout_height="match_parent"
-            android:padding="8dp"
+            android:padding="7dp"
             android:src="@drawable/usermain4"
             android:layout_gravity="center_vertical"/>
         <LinearLayout
@@ -214,7 +214,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
-                android:text="立即同步"
+                android:text="立即备份"
                 android:textSize="18dp"
                 />
         </LinearLayout>

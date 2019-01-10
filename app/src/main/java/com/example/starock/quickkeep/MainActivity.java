@@ -1,8 +1,10 @@
 package com.example.starock.quickkeep;
 
+import android.app.ActivityManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +21,7 @@ import com.example.starock.quickkeep.Database.Note;
 import com.example.starock.quickkeep.Database.NoteType;
 import com.example.starock.quickkeep.Drawer.ClipItemAdapter;
 import com.example.starock.quickkeep.Drawer.NoteTypeAdapter;
+import com.example.starock.quickkeep.User.PasswordActivity;
 
 import org.litepal.LitePal;
 import org.litepal.LitePalApplication;
@@ -30,6 +33,8 @@ import java.util.List;
 
 import cn.qzb.richeditor.RE;
 
+import static com.example.starock.quickkeep.BaseApplication.IS_FOREGROUND;
+import static com.example.starock.quickkeep.BaseApplication.LOCKSTATION;
 import static com.example.starock.quickkeep.MainFragment.noteList;
 import static com.example.starock.quickkeep.MainFragment.noteAdapter;
 public class MainActivity extends AppCompatActivity {
@@ -171,6 +176,36 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e)
         {
             e.printStackTrace();
+        }
+    }
+
+    public static boolean isAppOnForeground(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+        String packageName = context.getApplicationContext().getPackageName();
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+        if(appProcesses == null)
+            return false;
+        for(ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            if(appProcess.processName.equals(packageName) && appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                return true;
+            }
+        }
+        return false;
+    }
+    protected void onStop() {
+        super.onStop();
+        if(LOCKSTATION==true && !isAppOnForeground(this)) {
+            IS_FOREGROUND=false;
+        }
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+        if(LOCKSTATION==true && !IS_FOREGROUND) {
+            IS_FOREGROUND = true;
+            Intent intent=new Intent(MainActivity.this,PasswordActivity.class);
+            startActivity(intent);
+
         }
     }
 }
