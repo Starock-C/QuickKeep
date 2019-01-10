@@ -25,4 +25,39 @@
         android:background="@color/colorBlack"
         android:longClickable="true"/>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:layout_gravity="end"
+        android:background="@color/colorBlack">
+
+        <TextView
+            android:padding="10dp"
+            android:text="历史剪贴板"
+            android:textSize="15dp"
+            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorRed"
+            android:layout_width="match_parent"
+            android:layout_height="5px"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_drawer_clipboard"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:longClickable="true">
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>

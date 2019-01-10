@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Linerlayout布局圆角化-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
     <solid android:color="@color/colorWhite" />
     <stroke
+        android:dashGap="1dp"
         android:width="0.5dp"
         android:color="@color/colorGray" />
 
@@ -12,6 +12,6 @@
         android:right="1dp"
         android:top="1dp" />
 
-    <corners android:radius="10dp" />
+    <corners android:radius="5dp" />
 
 </shape>

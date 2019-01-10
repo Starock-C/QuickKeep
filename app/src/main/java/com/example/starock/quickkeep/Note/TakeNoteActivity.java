@@ -31,6 +31,7 @@ public class TakeNoteActivity extends AppCompatActivity {
     private EditText newType;
     private Button addType;
     private NoteType noteType;
+    private int oldPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +79,12 @@ public class TakeNoteActivity extends AppCompatActivity {
         selectTypeAdapter.setOnItemClickListener(new SelectTypeAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
+                recyclerView.getChildAt(oldPosition).setBackgroundResource(R.color.colorLightGray);
                 noteType = noteTypeList.get(position);
-                Toast.makeText(TakeNoteActivity.this,"find type "+noteType.getName(),Toast.LENGTH_SHORT).show();
+                recyclerView.getChildAt(position).setBackgroundResource(R.color.colorGray);
+                selectTypeAdapter.notifyDataSetChanged();
+                oldPosition = position;
+//                Toast.makeText(TakeNoteActivity.this,"find type "+noteType.getName(),Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -109,7 +114,7 @@ public class TakeNoteActivity extends AppCompatActivity {
 
     private void initTypes() {
         noteTypeList.clear();
-        noteTypeList.addAll(LitePal.where("name <> '未分类'").find(NoteType.class));
+        noteTypeList.addAll(LitePal.where("name <> '未分类' and name <> '剪贴板'").find(NoteType.class));
         selectTypeAdapter.notifyDataSetChanged();
     }
 

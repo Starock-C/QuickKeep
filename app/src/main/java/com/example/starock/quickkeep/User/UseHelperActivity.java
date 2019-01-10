@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,19 @@ public class UseHelperActivity extends AppCompatActivity {
     String name;
     EditText passcode;
     TextView howtogetpasscode;
+    ImageView back;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_helper);
 
         howtogetpasscode=findViewById(R.id.howtogetpasscode);
+        back=findViewById(R.id.im_back_finish);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UseHelperActivity.this.finish();
+            }
+        });
         howtogetpasscode.setClickable(true);
         howtogetpasscode.setOnClickListener(new View.OnClickListener() {
             @Override

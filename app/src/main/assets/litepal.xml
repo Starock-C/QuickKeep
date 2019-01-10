@@ -7,5 +7,6 @@
         <mapping class="com.example.starock.quickkeep.Database.Note"></mapping>
         <mapping class="com.example.starock.quickkeep.Database.NoteType"></mapping>
         <mapping class="com.example.starock.quickkeep.Database.History"></mapping>
+        <mapping class="com.example.starock.quickkeep.Database.ClipItem"></mapping>
     </list>
 </litepal>
