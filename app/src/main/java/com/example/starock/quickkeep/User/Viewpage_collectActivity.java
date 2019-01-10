@@ -65,9 +65,6 @@ public class Viewpage_collectActivity extends Activity {
 
             @Override
             public void onFinish() {
-                Intent intent=new Intent();
-                intent.setClass(Viewpage_collectActivity.this,UserMainActivity.class);
-                startActivity(intent);
                 finish();
             }
         }.start();
@@ -75,9 +72,6 @@ public class Viewpage_collectActivity extends Activity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.setClass(Viewpage_collectActivity.this,UserMainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

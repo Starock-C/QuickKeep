@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.starock.quickkeep.AnalysisUtils;
 import com.example.starock.quickkeep.LoginActivity;
@@ -19,7 +20,7 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
     RelativeLayout suggestion;
     RelativeLayout upload;
     ImageView close;
-
+    TextView email,username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,13 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
         suggestion=findViewById(R.id.layout_sugg);
         upload=findViewById(R.id.layout_upload);
         close=findViewById(R.id.im_close_ac);
+        email=(TextView)findViewById(R.id.email);
+        username=(TextView)findViewById(R.id.username);
+
+        if (AnalysisUtils.readLoginStatus(this)){
+            email.setText(AnalysisUtils.readLoginUserName(this));
+            username.setText(AnalysisUtils.readPersonalName(this));
+        }
 
         howtosearch.setOnClickListener(this);
         center.setOnClickListener(this);

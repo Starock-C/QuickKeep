@@ -53,7 +53,8 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="9dp"/>
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
@@ -97,7 +98,8 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="9dp"/>
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>

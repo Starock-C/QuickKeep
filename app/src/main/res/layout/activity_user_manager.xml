@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
-            android:layout_toRightOf="@id/img_mail"
+            android:layout_toRightOf="@id/img_mail1"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -90,5 +90,6 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="40dp"
         android:src="@drawable/ic_left"
-        android:backgroundTint="@color/colorWhite"></android.support.design.widget.FloatingActionButton>
+        android:backgroundTint="@color/colorWhite">
+    </android.support.design.widget.FloatingActionButton>
 </RelativeLayout>

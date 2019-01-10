@@ -20,7 +20,7 @@ public class UserManagerActivity extends AppCompatActivity /*implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_manager);
         user=(RelativeLayout)findViewById(R.id.rea_user);
-        modify_psd=(RelativeLayout)findViewById(R.id.fab_modify);
+        modify_psd=(RelativeLayout)findViewById(R.id.rea_modify);
         user_name=(TextView)findViewById(R.id.text_email);
         floatingActionButton=(FloatingActionButton) findViewById(R.id.fab_user_manager);
         user_name.setText(AnalysisUtils.readLoginUserName(this));

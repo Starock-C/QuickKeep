@@ -48,6 +48,7 @@ public class PersonalActivity extends AppCompatActivity implements View.OnClickL
             case R.id.re3:
                 if (AnalysisUtils.readLoginStatus(this)) {
                     AnalysisUtils.cleanLoginStatus(this);
+                    finish();
                 }
                 break;
             case R.id.fab_personal:
