@@ -82,9 +82,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             @Override
             public void onClick(View view) {
                 attemptLogin();
-                SharedPreferences.Editor editor=getSharedPreferences("data",MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor=getSharedPreferences("loginInfo",MODE_PRIVATE).edit();
                 editor.putString("Email",mEmailView.toString());
                 editor.putString("Passwork",mPasswordView.getText().toString());
+                editor.putBoolean("isLogin",true);
                 editor.apply();
             }
         });
@@ -93,9 +94,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
            @Override
            public void onClick(View v) {
                attemptLogin();
-               SharedPreferences.Editor editor=getSharedPreferences("data",MODE_PRIVATE).edit();
+               SharedPreferences.Editor editor=getSharedPreferences("loginInfo",MODE_PRIVATE).edit();
                editor.putString("Email",mEmailView.toString());
                editor.putString("Passwork",mPasswordView.getText().toString());
+               editor.putBoolean("isLogin",true);
                editor.apply();
            }
        });

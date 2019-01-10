@@ -4,9 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.example.starock.quickkeep.AnalysisUtils;
+import com.example.starock.quickkeep.LoginActivity;
 import com.example.starock.quickkeep.R;
 
 public class UserMainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,17 +41,27 @@ public class UserMainActivity extends AppCompatActivity implements View.OnClickL
         switch(v.getId()){
             case R.id.layout_way:
                 //如何收集
+                Intent intent=new Intent(UserMainActivity.this,Viewpage_collectActivity.class);
+                startActivity(intent);
                 break;
             case R.id.layout_center:
                 //个人中心
+                if(AnalysisUtils.readLoginStatus(this)){
+                    Intent intent1=new Intent(UserMainActivity.this,PersonalActivity.class);
+                    startActivity(intent1);
+                }
+                else {
+                    Intent intent1=new Intent(UserMainActivity.this,LoginActivity.class);
+                    startActivity(intent1);
+                }
                 break;
             case R.id.layout_setting:
-                Intent intent=new Intent(UserMainActivity.this,SettingActivity.class);
-                startActivity(intent);
+                Intent intent3=new Intent(UserMainActivity.this,SettingActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.layout_sugg:
-                Intent intent1=new Intent(UserMainActivity.this,UseHelperActivity.class);
-                startActivity(intent1);
+                Intent intent4=new Intent(UserMainActivity.this,UseHelperActivity.class);
+                startActivity(intent4);
                 break;
             case R.id.layout_upload:
                 break;

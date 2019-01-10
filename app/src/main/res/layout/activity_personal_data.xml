@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/person_data"
+        android:text="个人资料"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"/>
+
+    <RelativeLayout
+        android:id="@+id/rela1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/person_data"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginTop="45dp">
+        <ImageView
+            android:id="@+id/img_person"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/user"
+            android:padding="6dp"
+            android:layout_gravity="center_vertical"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:layout_toRightOf="@id/img_person"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_person_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="用户名"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rela2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/rela1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        >
+        <ImageView
+            android:id="@+id/img_message"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/message"
+            android:padding="6dp"
+            android:layout_gravity="center_vertical"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:layout_toRightOf="@id/img_message"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Be the change you want to see in the world"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/img_check_data"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rela2"
+        android:src="@drawable/check"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="150dp"
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_personal_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|left"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_left"
+        android:backgroundTint="@color/colorWhite">
+    </android.support.design.widget.FloatingActionButton>
+</RelativeLayout>
