@@ -1,6 +1,8 @@
 package com.example.starock.quickkeep.User;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -27,6 +29,7 @@ public class Viewpage_collectActivity extends Activity {
     private List<View> viewList;
     private ViewPager viewPager;
    *//* private SharedPreferences mPreferences;*/
+  private Context context;
   private VideoView video;
     private ImageView img;
     int i=0;
@@ -45,7 +48,7 @@ public class Viewpage_collectActivity extends Activity {
                 case 2:
                     video.setVisibility(View.GONE);
                     img.setVisibility(View.VISIBLE);
-                    ImageLoader.getInstance().displayImage(list.get(i).toString(),img);
+                    ((ImageView) findViewById(R.id.img)).setImageDrawable((Drawable) list.get(i));
                     i++;
                     waitTtime();
                     break;
