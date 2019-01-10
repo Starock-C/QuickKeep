@@ -32,6 +32,7 @@ public class ModifyNoteActivity extends AppCompatActivity {
     private NoteType noteType;
     private NoteType oldType;
     private Note note;
+    private int oldPosition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class ModifyNoteActivity extends AppCompatActivity {
         final int ID = id;
         note = LitePal.where("id = ?",Integer.toString(ID)).findFirst(Note.class);
         oldType = LitePal.where("name = ?",note.getType()).findFirst(NoteType.class);
-        Toast.makeText(ModifyNoteActivity.this,"find type "+oldType.getName(),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(ModifyNoteActivity.this,"find type "+oldType.getName(),Toast.LENGTH_SHORT).show();
         title.setText(note.getTitle());
         content.setText(note.getContent());
 
@@ -81,9 +82,12 @@ public class ModifyNoteActivity extends AppCompatActivity {
         selectTypeAdapter.setOnItemClickListener(new SelectTypeAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                SelectTypeAdapter.ViewHolder viewHolder = (SelectTypeAdapter.ViewHolder) recyclerView.getChildViewHolder(recyclerView.getChildAt(position));
+                recyclerView.getChildAt(oldPosition).setBackgroundResource(R.color.colorLightGray);
                 noteType = noteTypeList.get(position);
-                Toast.makeText(ModifyNoteActivity.this,"find type "+noteType.getName(),Toast.LENGTH_SHORT).show();
+                recyclerView.getChildAt(position).setBackgroundResource(R.color.colorGray);
+                selectTypeAdapter.notifyDataSetChanged();
+                oldPosition = position;
+//                Toast.makeText(ModifyNoteActivity.this,"find type "+noteType.getName(),Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -111,6 +115,6 @@ public class ModifyNoteActivity extends AppCompatActivity {
 
     private void initTypes() {
         noteTypeList.clear();
-        noteTypeList.addAll(LitePal.where("name <> '未分类'").find(NoteType.class));
+        noteTypeList.addAll(LitePal.where("name <> '未分类' and name <> '剪贴板'").find(NoteType.class));
     }
 }
