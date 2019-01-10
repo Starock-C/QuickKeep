@@ -17,7 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.VideoView;
 import android.net.Uri;
 import com.example.starock.quickkeep.R;
@@ -29,47 +31,16 @@ public class Viewpage_collectActivity extends Activity {
     private List<View> viewList;
     private ViewPager viewPager;
    *//* private SharedPreferences mPreferences;*/
-  private Context context;
-  private VideoView video;
+  private VideoView videoView;
+    private Button btn_start,btn_end;
+    private MediaController mediaController;
 
-    int i=0;
-    private List list=new ArrayList();
-    Handler handler=new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            switch ((msg.what)){
-                case 1:
-                    video.setVisibility(View.VISIBLE);
-                    video.setVideoURI(Uri.parse(list.get(i).toString()));
-                    video.requestFocus();
-                    video.start();
-                    break;
 
-            }
-            return false;
-        }
-    });
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_howtocollect);
         initView();
-        setDate();
-        startPhoto();
-        video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                i++;
-                startPhoto();
-                return true;
-            }
-        });
-        video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                i++;
-                startPhoto();
-            }
-        });
+
         FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,46 +49,40 @@ public class Viewpage_collectActivity extends Activity {
             }
         });
     }
-    private void setDate(){
-        list.add(Uri.parse("android.resource://"+getPackageName()+"/raw/yanshi"));
-        list.add("drawable://"+R.drawable.ic_yanshi1);
-        list.add(("drawable://"+R.drawable.ic_yanshi2));
-        list.add("drawable://"+R.drawable.ic_yanshi3);
-    }
-    private void initView(){
-        video=findViewById(R.id.video);
-      
-    }
-    private void startPhoto(){
-        if(i<list.size()){
-            if (list.get(i).toString().contains("resource")){
-                handler.sendEmptyMessage(1);
-            }else {
-                handler.sendEmptyMessage(2);
-            }
-        }else {
-            i=0;
-            if (list.get(i).toString().contains("resource")){
-                handler.sendEmptyMessage(1);
-            }else {
-                handler.sendEmptyMessage(2);
-            }
-        }
 
-    }
-    private void waitTtime(){
-        new Thread(new Runnable() {
+    private void initView() {
+        videoView= (VideoView) findViewById(R.id.videoView);
+        btn_start= (Button) findViewById(R.id.btn_start);
+        btn_end= (Button) findViewById(R.id.btn_end);
+
+
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                startPhoto();
+            public void onClick(View v) {
+                init();
             }
-        }).start();
+        });
+        btn_end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                videoView.stopPlayback();
+            }
+        });
     }
+
+    private void init() {
+        videoView = (VideoView) findViewById(R.id.videoView);
+        mediaController = new MediaController(this);
+        String uri = "android.resource://" + getPackageName() + "/raw/yanshi" ;
+        videoView.setVideoURI(Uri.parse(uri));
+        videoView.setMediaController(mediaController);
+        mediaController.setMediaPlayer(videoView);
+        videoView.requestFocus();
+        videoView.start();
+    }
+
+
+}
     /*protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -172,4 +137,3 @@ public class Viewpage_collectActivity extends Activity {
         });
     }
 */
-}
